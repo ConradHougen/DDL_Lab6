@@ -1,0 +1,126 @@
+Flow report for DDL_Lab6
+Sun Mar 02 17:53:43 2014
+Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
+
+
+---------------------
+; Table of Contents ;
+---------------------
+  1. Legal Notice
+  2. Flow Summary
+  3. Flow Settings
+  4. Flow Non-Default Global Settings
+  5. Flow Elapsed Time
+  6. Flow OS Summary
+  7. Flow Log
+
+
+
+----------------
+; Legal Notice ;
+----------------
+Copyright (C) 1991-2012 Altera Corporation
+Your use of Altera Corporation's design tools, logic functions 
+and other software and tools, and its AMPP partner logic 
+functions, and any output files from any of the foregoing 
+(including device programming or simulation files), and any 
+associated documentation or information are expressly subject 
+to the terms and conditions of the Altera Program License 
+Subscription Agreement, Altera MegaCore Function License 
+Agreement, or other applicable license agreement, including, 
+without limitation, that your use is for the sole purpose of 
+programming logic devices manufactured by Altera and sold by 
+Altera or its authorized distributors.  Please refer to the 
+applicable agreement for further details.
+
+
+
++------------------------------------------------------------------------------------+
+; Flow Summary                                                                       ;
++------------------------------------+-----------------------------------------------+
+; Flow Status                        ; Successful - Sun Mar 02 17:53:43 2014         ;
+; Quartus II 32-bit Version          ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
+; Revision Name                      ; DDL_Lab6                                      ;
+; Top-level Entity Name              ; lab6                                          ;
+; Family                             ; Cyclone III                                   ;
+; Device                             ; EP3C16F484C6                                  ;
+; Timing Models                      ; Final                                         ;
+; Total logic elements               ; 20 / 15,408 ( < 1 % )                         ;
+;     Total combinational functions  ; 20 / 15,408 ( < 1 % )                         ;
+;     Dedicated logic registers      ; 20 / 15,408 ( < 1 % )                         ;
+; Total registers                    ; 20                                            ;
+; Total pins                         ; 6 / 347 ( 2 % )                               ;
+; Total virtual pins                 ; 0                                             ;
+; Total memory bits                  ; 0 / 516,096 ( 0 % )                           ;
+; Embedded Multiplier 9-bit elements ; 0 / 112 ( 0 % )                               ;
+; Total PLLs                         ; 0 / 4 ( 0 % )                                 ;
++------------------------------------+-----------------------------------------------+
+
+
++-----------------------------------------+
+; Flow Settings                           ;
++-------------------+---------------------+
+; Option            ; Setting             ;
++-------------------+---------------------+
+; Start date & time ; 03/02/2014 17:53:22 ;
+; Main task         ; Compilation         ;
+; Revision Name     ; DDL_Lab6            ;
++-------------------+---------------------+
+
+
++----------------------------------------------------------------------------------------------------------------------+
+; Flow Non-Default Global Settings                                                                                     ;
++-------------------------------------+---------------------------------+---------------+-------------+----------------+
+; Assignment Name                     ; Value                           ; Default Value ; Entity Name ; Section Id     ;
++-------------------------------------+---------------------------------+---------------+-------------+----------------+
+; COMPILER_SIGNATURE_ID               ; 132129500026423.139380800207520 ; --            ; --          ; --             ;
+; EDA_OUTPUT_DATA_FORMAT              ; Verilog Hdl                     ; --            ; --          ; eda_simulation ;
+; EDA_SIMULATION_TOOL                 ; ModelSim-Altera (Verilog)       ; <None>        ; --          ; --             ;
+; MAX_CORE_JUNCTION_TEMP              ; 85                              ; --            ; --          ; --             ;
+; MIN_CORE_JUNCTION_TEMP              ; 0                               ; --            ; --          ; --             ;
+; NOMINAL_CORE_SUPPLY_VOLTAGE         ; 1.2V                            ; --            ; --          ; --             ;
+; PARTITION_COLOR                     ; 16764057                        ; --            ; lab6        ; Top            ;
+; PARTITION_FITTER_PRESERVATION_LEVEL ; PLACEMENT_AND_ROUTING           ; --            ; lab6        ; Top            ;
+; PARTITION_NETLIST_TYPE              ; SOURCE                          ; --            ; lab6        ; Top            ;
+; TOP_LEVEL_ENTITY                    ; lab6                            ; DDL_Lab6      ; --          ; --             ;
++-------------------------------------+---------------------------------+---------------+-------------+----------------+
+
+
++-------------------------------------------------------------------------------------------------------------------------------+
+; Flow Elapsed Time                                                                                                             ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+; Analysis & Synthesis      ; 00:00:01     ; 1.0                     ; 306 MB              ; 00:00:02                           ;
+; Fitter                    ; 00:00:11     ; 1.0                     ; 408 MB              ; 00:00:11                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 319 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 305 MB              ; 00:00:03                           ;
+; EDA Netlist Writer        ; 00:00:01     ; 1.0                     ; 282 MB              ; 00:00:01                           ;
+; Total                     ; 00:00:17     ; --                      ; --                  ; 00:00:19                           ;
++---------------------------+--------------+-------------------------+---------------------+------------------------------------+
+
+
++----------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                        ;
++---------------------------+------------------+-----------+------------+----------------+
+; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
++---------------------------+------------------+-----------+------------+----------------+
+; Analysis & Synthesis      ; Leibniz          ; Windows 7 ; 6.1        ; x86_64         ;
+; Fitter                    ; Leibniz          ; Windows 7 ; 6.1        ; x86_64         ;
+; Assembler                 ; Leibniz          ; Windows 7 ; 6.1        ; x86_64         ;
+; TimeQuest Timing Analyzer ; Leibniz          ; Windows 7 ; 6.1        ; x86_64         ;
+; EDA Netlist Writer        ; Leibniz          ; Windows 7 ; 6.1        ; x86_64         ;
++---------------------------+------------------+-----------+------------+----------------+
+
+
+------------
+; Flow Log ;
+------------
+quartus_map --read_settings_files=on --write_settings_files=off DDL_Lab6 -c DDL_Lab6
+quartus_fit --read_settings_files=off --write_settings_files=off DDL_Lab6 -c DDL_Lab6
+quartus_asm --read_settings_files=off --write_settings_files=off DDL_Lab6 -c DDL_Lab6
+quartus_sta DDL_Lab6 -c DDL_Lab6
+quartus_eda --read_settings_files=off --write_settings_files=off DDL_Lab6 -c DDL_Lab6
+
+
+
