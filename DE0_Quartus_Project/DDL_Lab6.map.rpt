@@ -1,5 +1,5 @@
 Analysis & Synthesis report for DDL_Lab6
-Sun Mar 02 17:53:24 2014
+Tue Mar 04 01:30:58 2014
 Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
 
 
@@ -43,7 +43,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                       ;
 +------------------------------------+-----------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Mar 02 17:53:24 2014         ;
+; Analysis & Synthesis Status        ; Successful - Tue Mar 04 01:30:58 2014         ;
 ; Quartus II 32-bit Version          ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
 ; Revision Name                      ; DDL_Lab6                                      ;
 ; Top-level Entity Name              ; lab6                                          ;
@@ -52,7 +52,7 @@ applicable agreement for further details.
 ;     Total combinational functions  ; 20                                            ;
 ;     Dedicated logic registers      ; 20                                            ;
 ; Total registers                    ; 20                                            ;
-; Total pins                         ; 6                                             ;
+; Total pins                         ; 7                                             ;
 ; Total virtual pins                 ; 0                                             ;
 ; Total memory bits                  ; 0                                             ;
 ; Embedded Multiplier 9-bit elements ; 0                                             ;
@@ -157,42 +157,42 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+--------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Source Files Read                                                                                                                            ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
-; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                              ; Library ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
-; lab6.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Conrad/Documents/Digital Logic Projects/Quartus2/DDL_Lab6/lab6.v ;         ;
-+----------------------------------+-----------------+------------------------+---------------------------------------------------------------------------+---------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Source Files Read                                                                                                                                               ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------+---------+
+; File Name with User-Entered Path ; Used in Netlist ; File Type              ; File Name with Absolute Path                                                                 ; Library ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------+---------+
+; lab6.v                           ; yes             ; User Verilog HDL File  ; C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/lab6.v ;         ;
++----------------------------------+-----------------+------------------------+----------------------------------------------------------------------------------------------+---------+
 
 
-+------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                ;
-+---------------------------------------------+--------------+
-; Resource                                    ; Usage        ;
-+---------------------------------------------+--------------+
-; Estimated Total logic elements              ; 20           ;
-;                                             ;              ;
-; Total combinational functions               ; 20           ;
-; Logic element usage by number of LUT inputs ;              ;
-;     -- 4 input functions                    ; 1            ;
-;     -- 3 input functions                    ; 16           ;
-;     -- <=2 input functions                  ; 3            ;
-;                                             ;              ;
-; Logic elements by mode                      ;              ;
-;     -- normal mode                          ; 20           ;
-;     -- arithmetic mode                      ; 0            ;
-;                                             ;              ;
-; Total registers                             ; 20           ;
-;     -- Dedicated logic registers            ; 20           ;
-;     -- I/O registers                        ; 0            ;
-;                                             ;              ;
-; I/O pins                                    ; 6            ;
-; Maximum fan-out node                        ; hndshk~input ;
-; Maximum fan-out                             ; 20           ;
-; Total fan-out                               ; 144          ;
-; Average fan-out                             ; 2.77         ;
-+---------------------------------------------+--------------+
++---------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary             ;
++---------------------------------------------+-----------+
+; Resource                                    ; Usage     ;
++---------------------------------------------+-----------+
+; Estimated Total logic elements              ; 20        ;
+;                                             ;           ;
+; Total combinational functions               ; 20        ;
+; Logic element usage by number of LUT inputs ;           ;
+;     -- 4 input functions                    ; 1         ;
+;     -- 3 input functions                    ; 16        ;
+;     -- <=2 input functions                  ; 3         ;
+;                                             ;           ;
+; Logic elements by mode                      ;           ;
+;     -- normal mode                          ; 20        ;
+;     -- arithmetic mode                      ; 0         ;
+;                                             ;           ;
+; Total registers                             ; 20        ;
+;     -- Dedicated logic registers            ; 20        ;
+;     -- I/O registers                        ; 0         ;
+;                                             ;           ;
+; I/O pins                                    ; 7         ;
+; Maximum fan-out node                        ; clk~input ;
+; Maximum fan-out                             ; 21        ;
+; Total fan-out                               ; 146       ;
+; Average fan-out                             ; 2.70      ;
++---------------------------------------------+-----------+
 
 
 +-----------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -200,7 +200,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
-; |lab6                      ; 20 (20)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 6    ; 0            ; |lab6               ;              ;
+; |lab6                      ; 20 (20)           ; 20 (20)      ; 0           ; 0            ; 0       ; 0         ; 7    ; 0            ; |lab6               ;              ;
 +----------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -255,24 +255,24 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Analysis & Synthesis
     Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Sun Mar 02 17:53:22 2014
+    Info: Processing started: Tue Mar 04 01:30:56 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off DDL_Lab6 -c DDL_Lab6
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file lab6.v
     Info (12023): Found entity 1: lab6
 Info (12127): Elaborating entity "lab6" for the top level hierarchy
-Warning (10230): Verilog HDL assignment warning at lab6.v(58): truncated value with size 17 to match size of target (1)
-Warning (10230): Verilog HDL assignment warning at lab6.v(87): truncated value with size 17 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at lab6.v(61): truncated value with size 17 to match size of target (1)
+Warning (10230): Verilog HDL assignment warning at lab6.v(90): truncated value with size 17 to match size of target (1)
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 0 node(s), including 0 DDIO, 0 PLL, 0 transceiver and 0 LCELL
-Info (21057): Implemented 27 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 28 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 4 input pins
-    Info (21059): Implemented 2 output pins
+    Info (21059): Implemented 3 output pins
     Info (21061): Implemented 21 logic cells
 Info: Quartus II 32-bit Analysis & Synthesis was successful. 0 errors, 3 warnings
     Info: Peak virtual memory: 311 megabytes
-    Info: Processing ended: Sun Mar 02 17:53:24 2014
+    Info: Processing ended: Tue Mar 04 01:30:58 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

@@ -16,7 +16,7 @@
 // PROGRAM "Quartus II 32-bit"
 // VERSION "Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition"
 
-// DATE "03/02/2014 17:53:42"
+// DATE "03/04/2014 01:31:18"
 
 // 
 // Device: Altera EP3C16F484C6 Package FBGA484
@@ -34,19 +34,22 @@ module lab6 (
 	reset,
 	dataIn,
 	dataOut,
-	LED1);
+	LED1,
+	LED_CLK);
 input 	clk;
 input 	hndshk;
 input 	reset;
 input 	dataIn;
 output 	dataOut;
 output 	LED1;
+output 	LED_CLK;
 
 // Design Ports Information
 // dataOut	=>  Location: PIN_T9,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: 2mA
 // LED1	=>  Location: PIN_J1,	 I/O Standard: 2.5 V,	 Current Strength: Default
-// hndshk	=>  Location: PIN_T10,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: Default
+// LED_CLK	=>  Location: PIN_J2,	 I/O Standard: 2.5 V,	 Current Strength: Default
 // clk	=>  Location: PIN_V7,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: Default
+// hndshk	=>  Location: PIN_T10,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: Default
 // reset	=>  Location: PIN_R12,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: Default
 // dataIn	=>  Location: PIN_U8,	 I/O Standard: 3.3-V LVCMOS,	 Current Strength: Default
 
@@ -77,6 +80,7 @@ wire \dataInReg~15_combout ;
 wire \dataInReg~16_combout ;
 wire \dataOut~output_o ;
 wire \LED1~output_o ;
+wire \LED_CLK~output_o ;
 wire \clk~input_o ;
 wire \dataIn~input_o ;
 wire \hndshk~input_o ;
@@ -189,7 +193,7 @@ defparam \dataInReg~9 .lut_mask = 16'hFC30;
 defparam \dataInReg~9 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N29
+// Location: FF_X7_Y1_N17
 dffeas \dataInReg[11] (
 	.clk(\clk~input_o ),
 	.d(\dataInReg~11_combout ),
@@ -244,7 +248,7 @@ defparam \dataInReg[12] .is_wysiwyg = "true";
 defparam \dataInReg[12] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N28
+// Location: LCCOMB_X7_Y1_N16
 cycloneiii_lcell_comb \dataInReg~11 (
 // Equation(s):
 // \dataInReg~11_combout  = (\hndshk~input_o  & (dataInReg[10])) # (!\hndshk~input_o  & ((dataInReg[12])))
@@ -261,7 +265,7 @@ defparam \dataInReg~11 .lut_mask = 16'hAAF0;
 defparam \dataInReg~11 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N17
+// Location: FF_X7_Y1_N13
 dffeas \dataInReg[13] (
 	.clk(\clk~input_o ),
 	.d(\dataInReg~13_combout ),
@@ -283,17 +287,17 @@ defparam \dataInReg[13] .power_up = "low";
 // Location: LCCOMB_X7_Y1_N14
 cycloneiii_lcell_comb \dataInReg~12 (
 // Equation(s):
-// \dataInReg~12_combout  = (\hndshk~input_o  & (dataInReg[11])) # (!\hndshk~input_o  & ((dataInReg[13])))
+// \dataInReg~12_combout  = (\hndshk~input_o  & ((dataInReg[11]))) # (!\hndshk~input_o  & (dataInReg[13]))
 
-	.dataa(gnd),
+	.dataa(dataInReg[13]),
 	.datab(dataInReg[11]),
-	.datac(\hndshk~input_o ),
-	.datad(dataInReg[13]),
+	.datac(gnd),
+	.datad(\hndshk~input_o ),
 	.cin(gnd),
 	.combout(\dataInReg~12_combout ),
 	.cout());
 // synopsys translate_off
-defparam \dataInReg~12 .lut_mask = 16'hCFC0;
+defparam \dataInReg~12 .lut_mask = 16'hCCAA;
 defparam \dataInReg~12 .sum_lutc_input = "datac";
 // synopsys translate_on
 
@@ -316,7 +320,7 @@ defparam \dataInReg[14] .is_wysiwyg = "true";
 defparam \dataInReg[14] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N16
+// Location: LCCOMB_X7_Y1_N12
 cycloneiii_lcell_comb \dataInReg~13 (
 // Equation(s):
 // \dataInReg~13_combout  = (\hndshk~input_o  & (dataInReg[12])) # (!\hndshk~input_o  & ((dataInReg[14])))
@@ -333,7 +337,7 @@ defparam \dataInReg~13 .lut_mask = 16'hF3C0;
 defparam \dataInReg~13 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N25
+// Location: FF_X7_Y1_N29
 dffeas \dataInReg[15] (
 	.clk(\clk~input_o ),
 	.d(\dataInReg~15_combout ),
@@ -355,17 +359,17 @@ defparam \dataInReg[15] .power_up = "low";
 // Location: LCCOMB_X7_Y1_N10
 cycloneiii_lcell_comb \dataInReg~14 (
 // Equation(s):
-// \dataInReg~14_combout  = (\hndshk~input_o  & ((dataInReg[13]))) # (!\hndshk~input_o  & (dataInReg[15]))
+// \dataInReg~14_combout  = (\hndshk~input_o  & (dataInReg[13])) # (!\hndshk~input_o  & ((dataInReg[15])))
 
-	.dataa(gnd),
+	.dataa(dataInReg[13]),
 	.datab(dataInReg[15]),
-	.datac(\hndshk~input_o ),
-	.datad(dataInReg[13]),
+	.datac(gnd),
+	.datad(\hndshk~input_o ),
 	.cin(gnd),
 	.combout(\dataInReg~14_combout ),
 	.cout());
 // synopsys translate_off
-defparam \dataInReg~14 .lut_mask = 16'hFC0C;
+defparam \dataInReg~14 .lut_mask = 16'hAACC;
 defparam \dataInReg~14 .sum_lutc_input = "datac";
 // synopsys translate_on
 
@@ -388,7 +392,7 @@ defparam \dataInReg[16] .is_wysiwyg = "true";
 defparam \dataInReg[16] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N24
+// Location: LCCOMB_X7_Y1_N28
 cycloneiii_lcell_comb \dataInReg~15 (
 // Equation(s):
 // \dataInReg~15_combout  = (\hndshk~input_o  & (dataInReg[14])) # (!\hndshk~input_o  & ((dataInReg[16])))
@@ -448,6 +452,19 @@ defparam \LED1~output .bus_hold = "false";
 defparam \LED1~output .open_drain_output = "false";
 // synopsys translate_on
 
+// Location: IOOBUF_X0_Y20_N2
+cycloneiii_io_obuf \LED_CLK~output (
+	.i(\clk~input_o ),
+	.oe(vcc),
+	.seriesterminationcontrol(16'b0000000000000000),
+	.devoe(devoe),
+	.o(\LED_CLK~output_o ),
+	.obar());
+// synopsys translate_off
+defparam \LED_CLK~output .bus_hold = "false";
+defparam \LED_CLK~output .open_drain_output = "false";
+// synopsys translate_on
+
 // Location: IOIBUF_X7_Y0_N15
 cycloneiii_io_ibuf \clk~input (
 	.i(clk),
@@ -478,7 +495,7 @@ defparam \hndshk~input .bus_hold = "false";
 defparam \hndshk~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N0
+// Location: LCCOMB_X7_Y1_N20
 cycloneiii_lcell_comb \dataInReg~7 (
 // Equation(s):
 // \dataInReg~7_combout  = (\hndshk~input_o  & ((dataInReg[6]))) # (!\hndshk~input_o  & (dataInReg[8]))
@@ -505,7 +522,7 @@ defparam \reset~input .bus_hold = "false";
 defparam \reset~input .simulate_z_as = "z";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N13
+// Location: FF_X7_Y1_N1
 dffeas dataRcvd(
 	.clk(\clk~input_o ),
 	.d(\LED1~1_combout ),
@@ -524,7 +541,7 @@ defparam dataRcvd.is_wysiwyg = "true";
 defparam dataRcvd.power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N12
+// Location: LCCOMB_X7_Y1_N0
 cycloneiii_lcell_comb \LED1~1 (
 // Equation(s):
 // \LED1~1_combout  = (\dataRcvd~q ) # (\hndshk~input_o )
@@ -541,7 +558,7 @@ defparam \LED1~1 .lut_mask = 16'hFFF0;
 defparam \LED1~1 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N1
+// Location: FF_X7_Y1_N21
 dffeas \dataInReg[7] (
 	.clk(\clk~input_o ),
 	.d(\dataInReg~7_combout ),
@@ -668,7 +685,7 @@ defparam \dataInReg[4] .is_wysiwyg = "true";
 defparam \dataInReg[4] .power_up = "low";
 // synopsys translate_on
 
-// Location: LCCOMB_X7_Y1_N20
+// Location: LCCOMB_X7_Y1_N24
 cycloneiii_lcell_comb \dataInReg~3 (
 // Equation(s):
 // \dataInReg~3_combout  = (\hndshk~input_o  & ((dataInReg[2]))) # (!\hndshk~input_o  & (dataInReg[4]))
@@ -685,7 +702,7 @@ defparam \dataInReg~3 .lut_mask = 16'hFC30;
 defparam \dataInReg~3 .sum_lutc_input = "datac";
 // synopsys translate_on
 
-// Location: FF_X7_Y1_N21
+// Location: FF_X7_Y1_N25
 dffeas \dataInReg[3] (
 	.clk(\clk~input_o ),
 	.d(\dataInReg~3_combout ),
@@ -887,5 +904,7 @@ defparam \LED1~reg0 .power_up = "low";
 assign dataOut = \dataOut~output_o ;
 
 assign LED1 = \LED1~output_o ;
+
+assign LED_CLK = \LED_CLK~output_o ;
 
 endmodule

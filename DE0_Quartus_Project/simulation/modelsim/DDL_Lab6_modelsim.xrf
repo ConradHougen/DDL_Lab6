@@ -1,6 +1,6 @@
 vendor_name = ModelSim
-source_file = 1, C:/Users/Conrad/Documents/Digital Logic Projects/Quartus2/DDL_Lab6/lab6.v
-source_file = 1, C:/Users/Conrad/Documents/Digital Logic Projects/Quartus2/DDL_Lab6/db/DDL_Lab6.cbx.xml
+source_file = 1, C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/lab6.v
+source_file = 1, C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/db/DDL_Lab6.cbx.xml
 design_name = lab6
 instance = comp, \dataInReg[8] , dataInReg[8], lab6, 1
 instance = comp, \dataInReg[9] , dataInReg[9], lab6, 1
@@ -22,6 +22,7 @@ instance = comp, \dataInReg~15 , dataInReg~15, lab6, 1
 instance = comp, \dataInReg~16 , dataInReg~16, lab6, 1
 instance = comp, \dataOut~output , dataOut~output, lab6, 1
 instance = comp, \LED1~output , LED1~output, lab6, 1
+instance = comp, \LED_CLK~output , LED_CLK~output, lab6, 1
 instance = comp, \clk~input , clk~input, lab6, 1
 instance = comp, \dataIn~input , dataIn~input, lab6, 1
 instance = comp, \hndshk~input , hndshk~input, lab6, 1

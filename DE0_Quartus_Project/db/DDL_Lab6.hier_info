@@ -19,6 +19,7 @@ clk => dataInReg[14].CLK
 clk => dataInReg[15].CLK
 clk => dataInReg[16].CLK
 clk => dataRcvd.CLK
+clk => LED_CLK.DATAIN
 hndshk => dataInReg.OUTPUTSELECT
 hndshk => dataInReg.OUTPUTSELECT
 hndshk => dataInReg.OUTPUTSELECT
@@ -64,5 +65,6 @@ dataIn => dataInReg.DATAB
 dataIn => LED1.DATAB
 dataOut <= dataOut~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LED1 <= LED1~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LED_CLK <= clk.DB_MAX_OUTPUT_PORT_TYPE
 
 

@@ -19,14 +19,14 @@
 //
 // Good luck!
 //
-// Author: MPhillips
-// Date:   Oct. 5th, 2013
+// Author: Conrad Hougen and Cy Parker
+// Date:   Mar. 4th, 2014
 //
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //ADD INPUTS AND OUTPUTS
-module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1); 
+module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK); 
 							
 	// NUMBER OF COEFFICIENTS (465)
 	// 	(Change this to a small value for initial testing and debugging, 
@@ -37,6 +37,9 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1);
 	input clk, hndshk, reset, dataIn;
 	output reg dataOut;
 	output reg LED1;
+	output LED_CLK;
+	
+	assign LED_CLK = clk;
 	
 	// store the input data by shifting into register
 	reg [16:0] dataInReg;

@@ -289,7 +289,7 @@ RESERVED_INPUT_WITH_WEAK_PULLUP : H20       :        :                   :      
 RESERVED_INPUT_WITH_WEAK_PULLUP : H21       :        :                   :         : 6         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : H22       :        :                   :         : 6         :                
 LED1                         : J1        : output : 2.5 V             :         : 1         : Y              
-RESERVED_INPUT_WITH_WEAK_PULLUP : J2        :        :                   :         : 1         :                
+LED_CLK                      : J2        : output : 2.5 V             :         : 1         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : J3        :        :                   :         : 1         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : J4        :        :                   :         : 1         :                
 GND                          : J5        : gnd    :                   :         :           :                

@@ -1,5 +1,5 @@
 Fitter report for DDL_Lab6
-Sun Mar 02 17:53:36 2014
+Tue Mar 04 01:31:10 2014
 Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
 
 
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +------------------------------------------------------------------------------------+
 ; Fitter Summary                                                                     ;
 +------------------------------------+-----------------------------------------------+
-; Fitter Status                      ; Successful - Sun Mar 02 17:53:36 2014         ;
+; Fitter Status                      ; Successful - Tue Mar 04 01:31:10 2014         ;
 ; Quartus II 32-bit Version          ; 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition ;
 ; Revision Name                      ; DDL_Lab6                                      ;
 ; Top-level Entity Name              ; lab6                                          ;
@@ -75,7 +75,7 @@ applicable agreement for further details.
 ;     Total combinational functions  ; 20 / 15,408 ( < 1 % )                         ;
 ;     Dedicated logic registers      ; 20 / 15,408 ( < 1 % )                         ;
 ; Total registers                    ; 20                                            ;
-; Total pins                         ; 6 / 347 ( 2 % )                               ;
+; Total pins                         ; 7 / 347 ( 2 % )                               ;
 ; Total virtual pins                 ; 0                                             ;
 ; Total memory bits                  ; 0 / 516,096 ( 0 % )                           ;
 ; Embedded Multiplier 9-bit elements ; 0 / 112 ( 0 % )                               ;
@@ -161,6 +161,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +----------+--------------------------------------+
 ; dataOut  ; Missing drive strength               ;
 ; LED1     ; Missing drive strength and slew rate ;
+; LED_CLK  ; Missing drive strength and slew rate ;
 +----------+--------------------------------------+
 
 
@@ -170,8 +171,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Value                  ;
 +---------------------+------------------------+
 ; Placement (by node) ;                        ;
-;     -- Requested    ; 0 / 63 ( 0.00 % )      ;
-;     -- Achieved     ; 0 / 63 ( 0.00 % )      ;
+;     -- Requested    ; 0 / 65 ( 0.00 % )      ;
+;     -- Achieved     ; 0 / 65 ( 0.00 % )      ;
 ;                     ;                        ;
 ; Routing (by net)    ;                        ;
 ;     -- Requested    ; 0 / 0 ( 0.00 % )       ;
@@ -194,7 +195,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 ; Partition Name                 ; # Nodes ; # Preserved Nodes ; Preservation Level Used ; Netlist Type Used ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
-; Top                            ; 53      ; 0                 ; N/A                     ; Source File       ;
+; Top                            ; 55      ; 0                 ; N/A                     ; Source File       ;
 ; hard_block:auto_generated_inst ; 10      ; 0                 ; N/A                     ; Source File       ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 
@@ -202,7 +203,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------+
 ; Pin-Out File ;
 +--------------+
-The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Projects/Quartus2/DDL_Lab6/DDL_Lab6.pin.
+The pin-out file can be found in C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/DDL_Lab6.pin.
 
 
 +---------------------------------------------------------------------+
@@ -232,7 +233,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ; Total LABs:  partially or completely used   ; 2 / 963 ( < 1 % )     ;
 ; User inserted logic elements                ; 0                     ;
 ; Virtual pins                                ; 0                     ;
-; I/O pins                                    ; 6 / 347 ( 2 % )       ;
+; I/O pins                                    ; 7 / 347 ( 2 % )       ;
 ;     -- Clock pins                           ; 0 / 8 ( 0 % )         ;
 ;     -- Dedicated input pins                 ; 0 / 9 ( 0 % )         ;
 ;                                             ;                       ;
@@ -249,12 +250,12 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )         ;
 ; Average interconnect usage (total/H/V)      ; 0% / 0% / 0%          ;
 ; Peak interconnect usage (total/H/V)         ; 0% / 0% / 0%          ;
-; Maximum fan-out node                        ; hndshk~input          ;
-; Maximum fan-out                             ; 20                    ;
-; Highest non-global fan-out signal           ; hndshk~input          ;
-; Highest non-global fan-out                  ; 20                    ;
-; Total fan-out                               ; 149                   ;
-; Average fan-out                             ; 2.40                  ;
+; Maximum fan-out node                        ; clk~input             ;
+; Maximum fan-out                             ; 21                    ;
+; Highest non-global fan-out signal           ; clk~input             ;
+; Highest non-global fan-out                  ; 21                    ;
+; Total fan-out                               ; 151                   ;
+; Average fan-out                             ; 2.36                  ;
 +---------------------------------------------+-----------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -289,7 +290,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ; Total LABs:  partially or completely used   ; 2 / 963 ( < 1 % )    ; 0 / 963 ( 0 % )                ;
 ;                                             ;                      ;                                ;
 ; Virtual pins                                ; 0                    ; 0                              ;
-; I/O pins                                    ; 6                    ; 0                              ;
+; I/O pins                                    ; 7                    ; 0                              ;
 ; Embedded Multiplier 9-bit elements          ; 0 / 112 ( 0 % )      ; 0 / 112 ( 0 % )                ;
 ; Total memory bits                           ; 0                    ; 0                              ;
 ; Total RAM block bits                        ; 0                    ; 0                              ;
@@ -301,7 +302,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ;     -- Registered Output Connections        ; 0                    ; 0                              ;
 ;                                             ;                      ;                                ;
 ; Internal Connections                        ;                      ;                                ;
-;     -- Total Connections                    ; 144                  ; 5                              ;
+;     -- Total Connections                    ; 146                  ; 5                              ;
 ;     -- Registered Connections               ; 38                   ; 0                              ;
 ;                                             ;                      ;                                ;
 ; External Connections                        ;                      ;                                ;
@@ -310,7 +311,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ;                                             ;                      ;                                ;
 ; Partition Interface                         ;                      ;                                ;
 ;     -- Input Ports                          ; 4                    ; 0                              ;
-;     -- Output Ports                         ; 2                    ; 0                              ;
+;     -- Output Ports                         ; 3                    ; 0                              ;
 ;     -- Bidir Ports                          ; 0                    ; 0                              ;
 ;                                             ;                      ;                                ;
 ; Registered Ports                            ;                      ;                                ;
@@ -334,7 +335,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 +--------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 ; Name   ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination Control Block ; Location assigned by ;
 +--------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
-; clk    ; V7    ; 3        ; 7            ; 0            ; 14           ; 20                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
+; clk    ; V7    ; 3        ; 7            ; 0            ; 14           ; 21                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; dataIn ; U8    ; 3        ; 3            ; 0            ; 14           ; 2                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; hndshk ; T10   ; 3        ; 14           ; 0            ; 7            ; 20                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
 ; reset  ; R12   ; 3        ; 5            ; 0            ; 28           ; 20                    ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 3.3-V LVCMOS ; --                        ; User                 ;
@@ -347,6 +348,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ; Name    ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Output Register ; Output Enable Register ; Power Up High ; Slew Rate ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination                       ; Termination Control Block ; Output Buffer Pre-emphasis ; Voltage Output Differential ; Location assigned by ; Output Enable Source ; Output Enable Group ;
 +---------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 ; LED1    ; J1    ; 1        ; 0            ; 20           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; LED_CLK ; J2    ; 1        ; 0            ; 20           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; dataOut ; T9    ; 3        ; 1            ; 0            ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 3.3-V LVCMOS ; 2mA              ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 +---------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 
@@ -377,7 +379,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 +----------+-----------------+---------------+--------------+
 ; I/O Bank ; Usage           ; VCCIO Voltage ; VREF Voltage ;
 +----------+-----------------+---------------+--------------+
-; 1        ; 5 / 33 ( 15 % ) ; 2.5V          ; --           ;
+; 1        ; 6 / 33 ( 18 % ) ; 2.5V          ; --           ;
 ; 2        ; 0 / 48 ( 0 % )  ; 2.5V          ; --           ;
 ; 3        ; 5 / 46 ( 11 % ) ; 3.3V          ; --           ;
 ; 4        ; 0 / 41 ( 0 % )  ; 2.5V          ; --           ;
@@ -614,7 +616,7 @@ The pin-out file can be found in C:/Users/Conrad/Documents/Digital Logic Project
 ; H21      ; 246        ; 6        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; H22      ; 245        ; 6        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; J1       ; 29         ; 1        ; LED1                                                      ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
-; J2       ; 28         ; 1        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
+; J2       ; 28         ; 1        ; LED_CLK                                                   ; output ; 2.5 V        ;         ; Row I/O    ; Y               ; no       ; Off          ;
 ; J3       ; 27         ; 1        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; J4       ; 24         ; 1        ; RESERVED_INPUT_WITH_WEAK_PULLUP                           ;        ;              ;         ; Row I/O    ;                 ; no       ; On           ;
 ; J5       ;            ;          ; GND                                                       ; gnd    ;              ;         ; --         ;                 ; --       ; --           ;
@@ -886,7 +888,7 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
 ; Compilation Hierarchy Node ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name ; Library Name ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
-; |lab6                      ; 20 (20)     ; 20 (20)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 6    ; 0            ; 0 (0)        ; 0 (0)             ; 20 (20)          ; |lab6               ;              ;
+; |lab6                      ; 20 (20)     ; 20 (20)                   ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 7    ; 0            ; 0 (0)        ; 0 (0)             ; 20 (20)          ; |lab6               ;              ;
 +----------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+---------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -898,96 +900,98 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------+----------+---------------+---------------+-----------------------+-----+------+
 ; dataOut ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; LED1    ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; LED_CLK ; Output   ; --            ; --            ; --                    ; --  ; --   ;
+; clk     ; Input    ; (6) 1314 ps   ; (0) 0 ps      ; --                    ; --  ; --   ;
 ; hndshk  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; clk     ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; reset   ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; dataIn  ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 +---------+----------+---------------+---------------+-----------------------+-----+------+
 
 
-+----------------------------------------------------+
-; Pad To Core Delay Chain Fanout                     ;
-+----------------------+-------------------+---------+
-; Source Pin / Fanout  ; Pad To Core Index ; Setting ;
-+----------------------+-------------------+---------+
-; hndshk               ;                   ;         ;
-;      - dataOut~0     ; 1                 ; 6       ;
-;      - LED1~0        ; 1                 ; 6       ;
-;      - LED1~1        ; 1                 ; 6       ;
-;      - dataInReg~0   ; 1                 ; 6       ;
-;      - dataInReg~1   ; 1                 ; 6       ;
-;      - dataInReg~2   ; 1                 ; 6       ;
-;      - dataInReg~3   ; 1                 ; 6       ;
-;      - dataInReg~4   ; 1                 ; 6       ;
-;      - dataInReg~5   ; 1                 ; 6       ;
-;      - dataInReg~6   ; 1                 ; 6       ;
-;      - dataInReg~7   ; 1                 ; 6       ;
-;      - dataInReg~8   ; 1                 ; 6       ;
-;      - dataInReg~9   ; 1                 ; 6       ;
-;      - dataInReg~10  ; 1                 ; 6       ;
-;      - dataInReg~11  ; 1                 ; 6       ;
-;      - dataInReg~12  ; 1                 ; 6       ;
-;      - dataInReg~13  ; 1                 ; 6       ;
-;      - dataInReg~14  ; 1                 ; 6       ;
-;      - dataInReg~15  ; 1                 ; 6       ;
-;      - dataInReg~16  ; 1                 ; 6       ;
-; clk                  ;                   ;         ;
-;      - LED1~reg0     ; 0                 ; 0       ;
-;      - dataOut~reg0  ; 0                 ; 0       ;
-;      - dataInReg[0]  ; 0                 ; 0       ;
-;      - dataRcvd      ; 0                 ; 0       ;
-;      - dataInReg[1]  ; 0                 ; 0       ;
-;      - dataInReg[2]  ; 0                 ; 0       ;
-;      - dataInReg[3]  ; 0                 ; 0       ;
-;      - dataInReg[4]  ; 0                 ; 0       ;
-;      - dataInReg[5]  ; 0                 ; 0       ;
-;      - dataInReg[6]  ; 0                 ; 0       ;
-;      - dataInReg[7]  ; 0                 ; 0       ;
-;      - dataInReg[8]  ; 0                 ; 0       ;
-;      - dataInReg[9]  ; 0                 ; 0       ;
-;      - dataInReg[10] ; 0                 ; 0       ;
-;      - dataInReg[11] ; 0                 ; 0       ;
-;      - dataInReg[12] ; 0                 ; 0       ;
-;      - dataInReg[13] ; 0                 ; 0       ;
-;      - dataInReg[14] ; 0                 ; 0       ;
-;      - dataInReg[15] ; 0                 ; 0       ;
-;      - dataInReg[16] ; 0                 ; 0       ;
-; reset                ;                   ;         ;
-;      - LED1~reg0     ; 1                 ; 6       ;
-;      - dataOut~reg0  ; 1                 ; 6       ;
-;      - dataInReg[0]  ; 1                 ; 6       ;
-;      - dataRcvd      ; 1                 ; 6       ;
-;      - dataInReg[1]  ; 1                 ; 6       ;
-;      - dataInReg[2]  ; 1                 ; 6       ;
-;      - dataInReg[3]  ; 1                 ; 6       ;
-;      - dataInReg[4]  ; 1                 ; 6       ;
-;      - dataInReg[5]  ; 1                 ; 6       ;
-;      - dataInReg[6]  ; 1                 ; 6       ;
-;      - dataInReg[7]  ; 1                 ; 6       ;
-;      - dataInReg[8]  ; 1                 ; 6       ;
-;      - dataInReg[9]  ; 1                 ; 6       ;
-;      - dataInReg[10] ; 1                 ; 6       ;
-;      - dataInReg[11] ; 1                 ; 6       ;
-;      - dataInReg[12] ; 1                 ; 6       ;
-;      - dataInReg[13] ; 1                 ; 6       ;
-;      - dataInReg[14] ; 1                 ; 6       ;
-;      - dataInReg[15] ; 1                 ; 6       ;
-;      - dataInReg[16] ; 1                 ; 6       ;
-; dataIn               ;                   ;         ;
-;      - LED1~0        ; 1                 ; 6       ;
-;      - dataInReg~0   ; 1                 ; 6       ;
-+----------------------+-------------------+---------+
++-----------------------------------------------------+
+; Pad To Core Delay Chain Fanout                      ;
++-----------------------+-------------------+---------+
+; Source Pin / Fanout   ; Pad To Core Index ; Setting ;
++-----------------------+-------------------+---------+
+; clk                   ;                   ;         ;
+;      - LED1~reg0      ; 1                 ; 0       ;
+;      - dataOut~reg0   ; 1                 ; 0       ;
+;      - dataInReg[0]   ; 1                 ; 0       ;
+;      - dataRcvd       ; 1                 ; 0       ;
+;      - dataInReg[1]   ; 1                 ; 0       ;
+;      - dataInReg[2]   ; 1                 ; 0       ;
+;      - dataInReg[3]   ; 1                 ; 0       ;
+;      - dataInReg[4]   ; 1                 ; 0       ;
+;      - dataInReg[5]   ; 1                 ; 0       ;
+;      - dataInReg[6]   ; 1                 ; 0       ;
+;      - dataInReg[7]   ; 1                 ; 0       ;
+;      - dataInReg[8]   ; 1                 ; 0       ;
+;      - dataInReg[9]   ; 1                 ; 0       ;
+;      - dataInReg[10]  ; 1                 ; 0       ;
+;      - dataInReg[11]  ; 1                 ; 0       ;
+;      - dataInReg[12]  ; 1                 ; 0       ;
+;      - dataInReg[13]  ; 1                 ; 0       ;
+;      - dataInReg[14]  ; 1                 ; 0       ;
+;      - dataInReg[15]  ; 1                 ; 0       ;
+;      - dataInReg[16]  ; 1                 ; 0       ;
+;      - LED_CLK~output ; 0                 ; 6       ;
+; hndshk                ;                   ;         ;
+;      - dataOut~0      ; 1                 ; 6       ;
+;      - LED1~0         ; 1                 ; 6       ;
+;      - LED1~1         ; 1                 ; 6       ;
+;      - dataInReg~0    ; 1                 ; 6       ;
+;      - dataInReg~1    ; 1                 ; 6       ;
+;      - dataInReg~2    ; 1                 ; 6       ;
+;      - dataInReg~3    ; 1                 ; 6       ;
+;      - dataInReg~4    ; 1                 ; 6       ;
+;      - dataInReg~5    ; 1                 ; 6       ;
+;      - dataInReg~6    ; 1                 ; 6       ;
+;      - dataInReg~7    ; 1                 ; 6       ;
+;      - dataInReg~8    ; 1                 ; 6       ;
+;      - dataInReg~9    ; 1                 ; 6       ;
+;      - dataInReg~10   ; 1                 ; 6       ;
+;      - dataInReg~11   ; 1                 ; 6       ;
+;      - dataInReg~12   ; 1                 ; 6       ;
+;      - dataInReg~13   ; 1                 ; 6       ;
+;      - dataInReg~14   ; 1                 ; 6       ;
+;      - dataInReg~15   ; 1                 ; 6       ;
+;      - dataInReg~16   ; 1                 ; 6       ;
+; reset                 ;                   ;         ;
+;      - LED1~reg0      ; 1                 ; 6       ;
+;      - dataOut~reg0   ; 1                 ; 6       ;
+;      - dataInReg[0]   ; 1                 ; 6       ;
+;      - dataRcvd       ; 1                 ; 6       ;
+;      - dataInReg[1]   ; 1                 ; 6       ;
+;      - dataInReg[2]   ; 1                 ; 6       ;
+;      - dataInReg[3]   ; 1                 ; 6       ;
+;      - dataInReg[4]   ; 1                 ; 6       ;
+;      - dataInReg[5]   ; 1                 ; 6       ;
+;      - dataInReg[6]   ; 1                 ; 6       ;
+;      - dataInReg[7]   ; 1                 ; 6       ;
+;      - dataInReg[8]   ; 1                 ; 6       ;
+;      - dataInReg[9]   ; 1                 ; 6       ;
+;      - dataInReg[10]  ; 1                 ; 6       ;
+;      - dataInReg[11]  ; 1                 ; 6       ;
+;      - dataInReg[12]  ; 1                 ; 6       ;
+;      - dataInReg[13]  ; 1                 ; 6       ;
+;      - dataInReg[14]  ; 1                 ; 6       ;
+;      - dataInReg[15]  ; 1                 ; 6       ;
+;      - dataInReg[16]  ; 1                 ; 6       ;
+; dataIn                ;                   ;         ;
+;      - LED1~0         ; 1                 ; 6       ;
+;      - dataInReg~0    ; 1                 ; 6       ;
++-----------------------+-------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------+
-; Control Signals                                                                                                                   ;
-+--------+------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; Name   ; Location         ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+--------+------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
-; LED1~1 ; LCCOMB_X7_Y1_N12 ; 19      ; Clock enable ; no     ; --                   ; --               ; --                        ;
-; clk    ; PIN_V7           ; 20      ; Clock        ; no     ; --                   ; --               ; --                        ;
-; reset  ; PIN_R12          ; 20      ; Async. clear ; no     ; --                   ; --               ; --                        ;
-+--------+------------------+---------+--------------+--------+----------------------+------------------+---------------------------+
++----------------------------------------------------------------------------------------------------------------------------------+
+; Control Signals                                                                                                                  ;
++--------+-----------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; Name   ; Location        ; Fan-Out ; Usage        ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++--------+-----------------+---------+--------------+--------+----------------------+------------------+---------------------------+
+; LED1~1 ; LCCOMB_X7_Y1_N0 ; 19      ; Clock enable ; no     ; --                   ; --               ; --                        ;
+; clk    ; PIN_V7          ; 21      ; Clock        ; no     ; --                   ; --               ; --                        ;
+; reset  ; PIN_R12         ; 20      ; Async. clear ; no     ; --                   ; --               ; --                        ;
++--------+-----------------+---------+--------------+--------+----------------------+------------------+---------------------------+
 
 
 +---------------------------------+
@@ -995,8 +999,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------+-----------------+
 ; Name          ; Fan-Out         ;
 +---------------+-----------------+
+; clk~input     ; 21              ;
 ; reset~input   ; 20              ;
-; clk~input     ; 20              ;
 ; hndshk~input  ; 20              ;
 ; LED1~1        ; 19              ;
 ; dataIn~input  ; 2               ;
@@ -1047,13 +1051,13 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +----------------------------+-----------------------+
 ; Interconnect Resource Type ; Usage                 ;
 +----------------------------+-----------------------+
-; Block interconnects        ; 15 / 47,787 ( < 1 % ) ;
-; C16 interconnects          ; 1 / 1,804 ( < 1 % )   ;
-; C4 interconnects           ; 11 / 31,272 ( < 1 % ) ;
+; Block interconnects        ; 16 / 47,787 ( < 1 % ) ;
+; C16 interconnects          ; 3 / 1,804 ( < 1 % )   ;
+; C4 interconnects           ; 12 / 31,272 ( < 1 % ) ;
 ; Direct links               ; 3 / 47,787 ( < 1 % )  ;
 ; Global clocks              ; 0 / 20 ( 0 % )        ;
 ; Local interconnects        ; 18 / 15,408 ( < 1 % ) ;
-; R24 interconnects          ; 0 / 1,775 ( 0 % )     ;
+; R24 interconnects          ; 1 / 1,775 ( < 1 % )   ;
 ; R4 interconnects           ; 8 / 41,310 ( < 1 % )  ;
 +----------------------------+-----------------------+
 
@@ -1219,14 +1223,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules          ; IO_000001 ; IO_000002    ; IO_000003 ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007 ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass         ; 6         ; 0            ; 6         ; 0            ; 0            ; 6         ; 6         ; 0            ; 6         ; 6         ; 0            ; 1            ; 0            ; 0            ; 4            ; 0            ; 1            ; 4            ; 0            ; 0            ; 0            ; 1            ; 0            ; 0            ; 0            ; 0            ; 0            ; 6         ; 0            ; 0            ;
+; Total Pass         ; 7         ; 0            ; 7         ; 0            ; 0            ; 7         ; 7         ; 0            ; 7         ; 7         ; 0            ; 2            ; 0            ; 0            ; 4            ; 0            ; 2            ; 4            ; 0            ; 0            ; 0            ; 2            ; 0            ; 0            ; 0            ; 0            ; 0            ; 7         ; 0            ; 0            ;
 ; Total Unchecked    ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; Total Inapplicable ; 0         ; 6            ; 0         ; 6            ; 6            ; 0         ; 0         ; 6            ; 0         ; 0         ; 6            ; 5            ; 6            ; 6            ; 2            ; 6            ; 5            ; 2            ; 6            ; 6            ; 6            ; 5            ; 6            ; 6            ; 6            ; 6            ; 6            ; 0         ; 6            ; 6            ;
+; Total Inapplicable ; 0         ; 7            ; 0         ; 7            ; 7            ; 0         ; 0         ; 7            ; 0         ; 0         ; 7            ; 5            ; 7            ; 7            ; 3            ; 7            ; 5            ; 3            ; 7            ; 7            ; 7            ; 5            ; 7            ; 7            ; 7            ; 7            ; 7            ; 0         ; 7            ; 7            ;
 ; Total Fail         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
 ; dataOut            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; LED1               ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
-; hndshk             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; LED_CLK            ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; clk                ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
+; hndshk             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; reset              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 ; dataIn             ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
@@ -1275,7 +1280,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 Info: *******************************************************************
 Info: Running Quartus II 32-bit Fitter
     Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Sun Mar 02 17:53:25 2014
+    Info: Processing started: Tue Mar 04 01:30:59 2014
 Info: Command: quartus_fit --read_settings_files=off --write_settings_files=off DDL_Lab6 -c DDL_Lab6
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (119006): Selected device EP3C16F484C6 for design "DDL_Lab6"
@@ -1318,7 +1323,7 @@ Info (170192): Fitter placement operations ending: elapsed time is 00:00:01
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
     Info (170196): Router estimated peak interconnect usage is 0% of the available device resources in the region that extends from location X0_Y0 to location X9_Y9
-Info (170194): Fitter routing operations ending: elapsed time is 00:00:00
+Info (170194): Fitter routing operations ending: elapsed time is 00:00:01
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
 Info (334003): Started post-fitting delay annotation
@@ -1326,14 +1331,14 @@ Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Warning (169177): 4 pins must meet Altera requirements for 3.3-, 3.0-, and 2.5-V interfaces. For more information, refer to AN 447: Interfacing Cyclone III Devices with 3.3/3.0/2.5-V LVTTL/LVCMOS I/O Systems.
-    Info (169178): Pin hndshk uses I/O standard 3.3-V LVCMOS at T10
     Info (169178): Pin clk uses I/O standard 3.3-V LVCMOS at V7
+    Info (169178): Pin hndshk uses I/O standard 3.3-V LVCMOS at T10
     Info (169178): Pin reset uses I/O standard 3.3-V LVCMOS at R12
     Info (169178): Pin dataIn uses I/O standard 3.3-V LVCMOS at U8
 Info: Quartus II 32-bit Fitter was successful. 0 errors, 5 warnings
     Info: Peak virtual memory: 408 megabytes
-    Info: Processing ended: Sun Mar 02 17:53:36 2014
-    Info: Elapsed time: 00:00:11
+    Info: Processing ended: Tue Mar 04 01:31:11 2014
+    Info: Elapsed time: 00:00:12
     Info: Total CPU time (on all processors): 00:00:11
 
 

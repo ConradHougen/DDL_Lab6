@@ -94,20 +94,22 @@ void delay32Ms(uint8_t timer_num, uint32_t delayInMs)
 ** Returned value:		None
 ** 
 ******************************************************************************/
+/*
 void TIMER32_0_IRQHandler(void)
 {  
   if ( LPC_TMR32B0->IR & 0x01 )
   {  
-	LPC_TMR32B0->IR = 1;				/* clear interrupt flag */
+	LPC_TMR32B0->IR = 1;				// clear interrupt flag
 	timer32_0_counter++;
   }
   if ( LPC_TMR32B0->IR & (0x1<<4) )
   {  
-	LPC_TMR32B0->IR = 0x1<<4;			/* clear interrupt flag */
+	LPC_TMR32B0->IR = 0x1<<4;			// clear interrupt flag
 	timer32_0_capture++;
   }
   return;
 }
+*/
 #endif //CONFIG_TIMER32_DEFAULT_TIMER32_0_IRQHANDLER
 
 #if CONFIG_TIMER32_DEFAULT_TIMER32_1_IRQHANDLER==1

@@ -38,6 +38,7 @@
 #include "timer32.h"
 
 
+
 /* Main Program */
 
 /*----Provided Noisy Morse Data for You----*/
@@ -76,37 +77,42 @@ const uint32_t length = 1600;//morse code data length
 #define LED_PORT 0
 #define LED 7
 
-
-int returned_num = 0;
+static const int data = 0x33D;
+static const int num_bits = 10;
+static int done_sending = 0;
+static int bits_sent = 0;
+static int bits_rcvd = 0;
+static int handshake = 0;
+static int returned_num = 0;
+static long int i = 0;
+static int bit_to_send = 0;
+static int reset_sig = 0;
 
 int main (void) {
 
 /*To-do
 * 1. System Initialization
 */
-	uint32_t last_timer_count = 0;
-	int ten_bit_num = 0x2AA;
-	int num_bits = 10;
-	int bit = 0;
-	int i;
 
 /*2. GPIO Initialization
  * GPIO for LED control
  * GPIOs for communication protocol: clock, handshake, reset, data input, data output
  */
 	/* Initialize GPIO (sets up clock) */
-	/* set edge triggering */
+	/* set edge triggering
 	*GPIO2_IS &= ~(0x1<<1);
-	/* single edge */
+	// single edge
 	*GPIO2_IBE |= (0x1<<1);
-	/* active high */
-	//*GPIO2_IEV &= ~(0x1<<1);
-	/* enable interrupt on pin 1 */
+	// active high
+	*GPIO2_IEV &= ~(0x1<<1);
+	// enable interrupt on pin 1
 	*GPIO2_IE |= (0x1<<1);
-	/* Set priority of gpio2 interrupt to 0 */
+	// Set priority of gpio2 interrupt to 0
 	NVIC_SetPriority(EINT2_IRQn, 0);
 
 	GPIOInit();
+	*/
+
 	GPIOSetDir( LED_PORT, LED, 1 );
 	GPIOSetDir( CLK_PORT, CLK, 1 );
 	GPIOSetDir( HNDSHK_PORT, HNDSHK, 1 );
@@ -114,62 +120,30 @@ int main (void) {
 	GPIOSetDir( DOUT_PORT, DOUT, 1 );
 	GPIOSetDir( DIN_PORT, DIN, 0 );
 
+	GPIOSetValue( LED_PORT, LED, 0 ); // start with LPC board LED off
+	GPIOSetValue( CLK_PORT, CLK, 0 ); // start with clock low
+	GPIOSetValue( HNDSHK_PORT, HNDSHK, 0 ); // start with reset low
+	GPIOSetValue( RESET_PORT, RESET, 0 ); // start with reset low
+	GPIOSetValue( DOUT_PORT, DOUT, 0 ); // start with clock low
+
 
 /*3. Timer Initialization
  * One Timer for generating clock, handshake, data output schedule
  */
-	/* init and enable timer */
+	/* init and timer */
 	init_timer32( 0, TIME_INTERVAL );
-	enable_timer32( 0 );
 
 
 /*4. Reset DE0 FIR filter
 * Generate a short pulse to reset DE0
 */
-	GPIOSetValue( RESET_PORT, RESET, 0 );
-	last_timer_count = timer32_0_counter; // store the time
-	while(timer32_0_counter < last_timer_count + 10); // delay 10ms
-	GPIOSetValue( RESET_PORT, RESET, 1 );
 
-	GPIOSetValue( LED_PORT, LED, 0 );
+	enable_timer32( 0 ); // reset will go high in timer interrupt
+
+
 
 	while (1) {
-		// periodically, send data to the DE0
-		returned_num = 0;
 
-		// set the handshake high
-		GPIOSetValue( HNDSHK_PORT, HNDSHK, 1);
-
-		// send the bits
-		for(i = 0; i < num_bits; ++i)
-		{
-			bit = ((ten_bit_num >> i) & 0x1); // get the next bit to send
-			GPIOSetValue( DOUT_PORT, DOUT, bit); // set the data out value
-			last_timer_count = timer32_0_counter; // store the time
-			GPIOSetValue( CLK_PORT, CLK, 1); // signal DE0 to get data
-			while(timer32_0_counter < last_timer_count + 100); // delay 100ms
-			GPIOSetValue( CLK_PORT, CLK, 0); // pull clock low
-			while(timer32_0_counter < last_timer_count + 200); // delay ~100ms
-		}
-
-		// done sending data, so lower the handshake
-		GPIOSetValue( HNDSHK_PORT, HNDSHK, 0);
-
-		// get the data back from the DE0 by clocking with handshake low
-		for(i = 0; i < num_bits; ++i)
-		{
-			last_timer_count = timer32_0_counter; // store the time
-			GPIOSetValue( CLK_PORT, CLK, 1); // signal DE0 to get data
-			while(timer32_0_counter < last_timer_count + 100); // delay 100ms
-			GPIOSetValue( CLK_PORT, CLK, 0); // pull clock low
-			while(timer32_0_counter < last_timer_count + 200); // delay ~100ms
-		}
-
-
-		//for(;;);
-		// delay
-		last_timer_count = timer32_0_counter;
-		while(timer32_0_counter < last_timer_count + 10000); // delay 10 seconds
 	};                                /* Loop forever */
 
 	return 1;
@@ -180,6 +154,7 @@ int main (void) {
  * config to both rising and falling edge to sense the data input from DE0
  * turn LED on/off
  */
+/*
 void PIOINT2_IRQHandler(void)
 {
 	int data_bit_in = (LPC_GPIO2->DATA >> 1) & 0x1;
@@ -192,12 +167,13 @@ void PIOINT2_IRQHandler(void)
 		GPIOSetValue( LED_PORT, LED, 0 );
 	}
 	returned_num = (returned_num << 1) + data_bit_in;
+	bits_rcvd++;
 
 	// clear the interrupt on pin 1
 	*GPIO2_IC |= (0x1<<1);
 
 } //end of external interrupt
-
+*/
 
 
 /*-----interrupt handler for timer32_0-----
@@ -205,13 +181,97 @@ void PIOINT2_IRQHandler(void)
  * generate bit output clock
  * send out a sample bit by bit (every interrupt, send out one data sample)
  */
-/*
+
 void TIMER32_0_IRQHandler(void)
 {
+	int data_bit_in;
 
+	// only do stuff every 500 ticks
+	if(!(timer32_0_counter % 500))
+	{
+		// raise negative reset signal
+		if(!reset_sig)
+		{
+			reset_sig = 1;
+			GPIOSetValue( RESET_PORT, RESET, 1 );
+		}
+		// generate handshake
+		if(!handshake && !done_sending)
+		{
+			// raise the handshake signal
+			handshake = 1;
+			GPIOSetValue( HNDSHK_PORT, HNDSHK, 1 );
+		}
+		else if(handshake && done_sending)
+		{
+			// lower the handshake signal
+			handshake = 0;
+			GPIOSetValue( HNDSHK_PORT, HNDSHK, 0 );
+		}
 
+		// --> Send out one data sample per every two interrupts
+		if(bits_sent < num_bits && !(i%2))
+		{
+			// still have data to send
+			bit_to_send = ((data >> bits_sent) & 0x1); // get the next bit to send
+			GPIOSetValue( DOUT_PORT, DOUT, bit_to_send ); // set the data out value
+		}
+		else if(bits_sent == num_bits)
+		{
+			// done sending
+			done_sending = 1;
+		}
 
+		// generate bit output clock (every interrupt, flip the clock signal)
+		if(!(i%2))
+		{
+			GPIOSetValue( CLK_PORT, CLK, 1 );
+
+			// should have sent a bit to the DE0
+			if(handshake)
+			{
+				bits_sent++;
+			}
+			else if(done_sending)
+			{
+				data_bit_in = (LPC_GPIO2->DATA >> 1) & 0x1;
+				if(data_bit_in == 0x1)
+				{
+					GPIOSetValue( LED_PORT, LED, 1 );
+				}
+				else if(data_bit_in == 0x0)
+				{
+					GPIOSetValue( LED_PORT, LED, 0 );
+				}
+				returned_num = (returned_num << 1) + data_bit_in;
+				bits_rcvd++;
+
+			}
+		}
+		else
+		{
+			GPIOSetValue( CLK_PORT, CLK, 0 );
+		}
+
+		// greater than because we want to wait another cycle before stopping
+		if(bits_rcvd > num_bits && !(i%2))
+		{
+			// turn off the LED when we finish
+			GPIOSetValue( LED_PORT, LED, 0 );
+			for(;;); // stop for now
+		}
+
+		// increment i
+		i++;
+	}
+
+	// increment the timer counter variable
+	if ( LPC_TMR32B0->IR & 0x01 )
+	{
+		LPC_TMR32B0->IR = 1;				// clear interrupt flag
+		timer32_0_counter++;
+	}
 
 
 } //end of timer interrupt
-*/
+
