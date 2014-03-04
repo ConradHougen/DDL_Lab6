@@ -63,13 +63,17 @@ const uint32_t length = 1600;//morse code data length
 *   3. Pin 2-1: data in
 *   4. Pin 2-2: handshake
 *   5. Pin 2-0: reset
-*   6. Pin 0-7: LED */
+*   6. Pin 0-7: LED
+*   7. Pin 3-0: data in clock from DE0
+*   */
 #define CLK_PORT 3
 #define CLK 2
 #define DOUT_PORT 3
 #define DOUT 1
 #define DIN_PORT 2
 #define DIN 1
+#define DINCLK_PORT 3
+#define DINCLK 0
 #define HNDSHK_PORT 2
 #define HNDSHK 2
 #define RESET_PORT 2
@@ -87,6 +91,7 @@ static int returned_num = 0;
 static long int i = 0;
 static int bit_to_send = 0;
 static int reset_sig = 0;
+static unsigned int samples_sent = 0;
 
 int main (void) {
 
@@ -99,19 +104,18 @@ int main (void) {
  * GPIOs for communication protocol: clock, handshake, reset, data input, data output
  */
 	/* Initialize GPIO (sets up clock) */
-	/* set edge triggering
-	*GPIO2_IS &= ~(0x1<<1);
+	// set edge triggering
+	*GPIO2_IS &= ~(0x1);
 	// single edge
-	*GPIO2_IBE |= (0x1<<1);
+	*GPIO2_IBE &= ~(0x1);
 	// active high
-	*GPIO2_IEV &= ~(0x1<<1);
-	// enable interrupt on pin 1
-	*GPIO2_IE |= (0x1<<1);
+	*GPIO2_IEV |= (0x1);
+	// enable interrupt on pin 0 (data in clock)
+	*GPIO2_IE |= (0x1);
 	// Set priority of gpio2 interrupt to 0
 	NVIC_SetPriority(EINT2_IRQn, 0);
 
 	GPIOInit();
-	*/
 
 	GPIOSetDir( LED_PORT, LED, 1 );
 	GPIOSetDir( CLK_PORT, CLK, 1 );
@@ -119,6 +123,7 @@ int main (void) {
 	GPIOSetDir( RESET_PORT, RESET, 1 );
 	GPIOSetDir( DOUT_PORT, DOUT, 1 );
 	GPIOSetDir( DIN_PORT, DIN, 0 );
+	GPIOSetDir( DINCLK_PORT, DINCLK, 0 );
 
 	GPIOSetValue( LED_PORT, LED, 0 ); // start with LPC board LED off
 	GPIOSetValue( CLK_PORT, CLK, 0 ); // start with clock low
@@ -151,12 +156,14 @@ int main (void) {
 
 
 /*-----Interrupt handler for external interrupt 2-----
- * config to both rising and falling edge to sense the data input from DE0
+ * config to only rising edge to sense the data input clock signal from DE0
  * turn LED on/off
  */
-/*
+
 void PIOINT2_IRQHandler(void)
 {
+	// interrupted by data in clock (pin 0), but need to read from
+	// data in (pin 1)
 	int data_bit_in = (LPC_GPIO2->DATA >> 1) & 0x1;
 	if(data_bit_in == 0x1)
 	{
@@ -169,11 +176,36 @@ void PIOINT2_IRQHandler(void)
 	returned_num = (returned_num << 1) + data_bit_in;
 	bits_rcvd++;
 
-	// clear the interrupt on pin 1
-	*GPIO2_IC |= (0x1<<1);
+	// if we've received a 17-bit packet...
+	if(bits_rcvd == 17)
+	{
+		if(samples_sent >= 1600)
+		{
+			// all data have been processed... finish
+			for(;;);
+		}
+		// returned_num should have our filtered value
+		if(40 <= returned_num && returned_num <= 60)
+		{
+			// Morse code dot --> turn off the LPC LED
+			GPIOSetValue( LED_PORT, LED, 0 );
+		}
+		else if(90 <= returned_num && returned_num <= 110 )
+		{
+			// Morse code dash --> turn on the LPC LED
+			GPIOSetValue( LED_PORT, LED, 1 );
+		}
+
+		// start sending the next datum for filtering
+		bits_sent = 0;
+		done_sending = 0;
+	}
+
+	// clear the interrupt on pin 0
+	*GPIO2_IC |= (0x1);
 
 } //end of external interrupt
-*/
+
 
 
 /*-----interrupt handler for timer32_0-----
@@ -213,52 +245,26 @@ void TIMER32_0_IRQHandler(void)
 		if(bits_sent < num_bits && !(i%2))
 		{
 			// still have data to send
-			bit_to_send = ((data >> bits_sent) & 0x1); // get the next bit to send
+			bit_to_send = ((morse[samples_sent] >> bits_sent) & 0x1); // get the next bit to send
 			GPIOSetValue( DOUT_PORT, DOUT, bit_to_send ); // set the data out value
+			bits_sent++;
 		}
-		else if(bits_sent == num_bits)
+		if(bits_sent == num_bits)
 		{
 			// done sending
 			done_sending = 1;
+			// sent another sample
+			samples_sent++;
 		}
 
 		// generate bit output clock (every interrupt, flip the clock signal)
 		if(!(i%2))
 		{
 			GPIOSetValue( CLK_PORT, CLK, 1 );
-
-			// should have sent a bit to the DE0
-			if(handshake)
-			{
-				bits_sent++;
-			}
-			else if(done_sending)
-			{
-				data_bit_in = (LPC_GPIO2->DATA >> 1) & 0x1;
-				if(data_bit_in == 0x1)
-				{
-					GPIOSetValue( LED_PORT, LED, 1 );
-				}
-				else if(data_bit_in == 0x0)
-				{
-					GPIOSetValue( LED_PORT, LED, 0 );
-				}
-				returned_num = (returned_num << 1) + data_bit_in;
-				bits_rcvd++;
-
-			}
 		}
 		else
 		{
 			GPIOSetValue( CLK_PORT, CLK, 0 );
-		}
-
-		// greater than because we want to wait another cycle before stopping
-		if(bits_rcvd > num_bits && !(i%2))
-		{
-			// turn off the LED when we finish
-			GPIOSetValue( LED_PORT, LED, 0 );
-			for(;;); // stop for now
 		}
 
 		// increment i

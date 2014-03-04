@@ -44,7 +44,6 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	// store the input data by shifting into register
 	reg [16:0] dataInReg;
 	// toggle var to keep track of handshake
-	//reg toggle;
 	reg dataRcvd; // have we received any data
 	
 	// DEFINE ALL REGISTERS AND WIRES HERE
@@ -52,10 +51,12 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	reg signed 	[16:0] 	coefficient;	// Coefficient of FIR filter for index coeffIndex
 	reg signed 	[16:0] 	out;			// Register used for coefficient calculation
 	// Add more here...
-
+	reg signed [464:0] buffer[9:0]; // buffer to store all 465 current inputs
+	output reg [16:0] filtered_val; // result value after filtering and summing
+	
+	
 	initial
 	begin
-		//toggle <= 0;
 		dataRcvd <= 0;
 		dataInReg <= 17'b0;
 		dataOut <= 17'b0;
@@ -89,6 +90,10 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 			dataInReg <= 17'b0;
 			dataOut <= 17'b0;
 			LED1 <= 1'b0;
+			
+			coefficient	<= 17'd0;
+			coeffIndex <= 12'b0;
+			out <= 17'b0;
 		end
 		else
 		begin
@@ -116,7 +121,7 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	// BLOCK 2: CALCULATING OUTPUT Y
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-
+	
 
 
 	// BLOCK 3: CALCULATING COEFFICIENT
@@ -124,16 +129,17 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Calculate the next coefficient here
-	/*
-	always @ ( ) // Define always statement as you wish...
+	
+	always @ (negedge hndshk) // Define always statement as you wish...
   	begin  	
 		
 		// Reset values
+		/*
 		if (reset)
 		begin
 			coefficient	= 17'd0;
 		end
-		
+		*/
 		// Calculate coefficient based on the coeffIndex value. Note that coeffIndex is a signed value!
 		// (Note: These don't necessarily have to be blocking statements.)
     	case ( coeffIndex )
@@ -613,5 +619,5 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 		coefficient = out;
 
 	end
-	*/
+
 endmodule
