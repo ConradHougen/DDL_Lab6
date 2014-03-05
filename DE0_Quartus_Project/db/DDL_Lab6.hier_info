@@ -1,5 +1,7 @@
 |lab6
 clk => LED1~reg0.CLK
+clk => dataRcvd.CLK
+clk => clk_out~reg0.CLK
 clk => dataOut~reg0.CLK
 clk => dataInReg[0].CLK
 clk => dataInReg[1].CLK
@@ -18,7 +20,6 @@ clk => dataInReg[13].CLK
 clk => dataInReg[14].CLK
 clk => dataInReg[15].CLK
 clk => dataInReg[16].CLK
-clk => dataRcvd.CLK
 clk => LED_CLK.DATAIN
 hndshk => dataInReg.OUTPUTSELECT
 hndshk => dataInReg.OUTPUTSELECT
@@ -38,10 +39,12 @@ hndshk => dataInReg.OUTPUTSELECT
 hndshk => dataInReg.OUTPUTSELECT
 hndshk => dataInReg.OUTPUTSELECT
 hndshk => LED1.OUTPUTSELECT
+hndshk => clk_out.OUTPUTSELECT
 hndshk => always0.IN1
-hndshk => dataRcvd.ENA
 hndshk => dataOut~reg0.ENA
+hndshk => dataRcvd.ENA
 reset => LED1~reg0.ACLR
+reset => dataRcvd.ACLR
 reset => dataOut~reg0.ACLR
 reset => dataInReg[0].ACLR
 reset => dataInReg[1].ACLR
@@ -60,11 +63,14 @@ reset => dataInReg[13].ACLR
 reset => dataInReg[14].ACLR
 reset => dataInReg[15].ACLR
 reset => dataInReg[16].ACLR
-reset => dataRcvd.ACLR
+reset => clk_out~reg0.ENA
 dataIn => dataInReg.DATAB
 dataIn => LED1.DATAB
+dataIn => LED_dataIN.DATAIN
 dataOut <= dataOut~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LED1 <= LED1~reg0.DB_MAX_OUTPUT_PORT_TYPE
 LED_CLK <= clk.DB_MAX_OUTPUT_PORT_TYPE
+clk_out <= clk_out~reg0.DB_MAX_OUTPUT_PORT_TYPE
+LED_dataIN <= dataIn.DB_MAX_OUTPUT_PORT_TYPE
 
 

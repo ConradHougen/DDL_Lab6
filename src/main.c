@@ -72,11 +72,11 @@ const uint32_t length = 1600;//morse code data length
 #define DOUT 1
 #define DIN_PORT 2
 #define DIN 1
-#define DINCLK_PORT 3
+#define DINCLK_PORT 2
 #define DINCLK 0
 #define HNDSHK_PORT 2
 #define HNDSHK 2
-#define RESET_PORT 2
+#define RESET_PORT 3
 #define RESET 0
 #define LED_PORT 0
 #define LED 7
@@ -106,10 +106,10 @@ int main (void) {
 	/* Initialize GPIO (sets up clock) */
 	// set edge triggering
 	*GPIO2_IS &= ~(0x1);
-	// single edge
-	*GPIO2_IBE &= ~(0x1);
+	// both edges
+	*GPIO2_IBE |= (0x1);
 	// active high
-	*GPIO2_IEV |= (0x1);
+	//*GPIO2_IEV |= (0x1);
 	// enable interrupt on pin 0 (data in clock)
 	*GPIO2_IE |= (0x1);
 	// Set priority of gpio2 interrupt to 0
@@ -156,7 +156,7 @@ int main (void) {
 
 
 /*-----Interrupt handler for external interrupt 2-----
- * config to only rising edge to sense the data input clock signal from DE0
+ * config to both edges to sense the data input clock signal from DE0
  * turn LED on/off
  */
 
@@ -176,14 +176,16 @@ void PIOINT2_IRQHandler(void)
 	returned_num = (returned_num << 1) + data_bit_in;
 	bits_rcvd++;
 
-	// if we've received a 17-bit packet...
-	if(bits_rcvd == 17)
+	// if we've received a 10-bit packet...
+	if(bits_rcvd == num_bits)
 	{
+		/*
 		if(samples_sent >= 1600)
 		{
 			// all data have been processed... finish
 			for(;;);
 		}
+
 		// returned_num should have our filtered value
 		if(40 <= returned_num && returned_num <= 60)
 		{
@@ -195,8 +197,11 @@ void PIOINT2_IRQHandler(void)
 			// Morse code dash --> turn on the LPC LED
 			GPIOSetValue( LED_PORT, LED, 1 );
 		}
+		*/
+		for(;;);
 
 		// start sending the next datum for filtering
+		bits_rcvd = 0;
 		bits_sent = 0;
 		done_sending = 0;
 	}
@@ -216,7 +221,6 @@ void PIOINT2_IRQHandler(void)
 
 void TIMER32_0_IRQHandler(void)
 {
-	int data_bit_in;
 
 	// only do stuff every 500 ticks
 	if(!(timer32_0_counter % 500))
@@ -241,11 +245,11 @@ void TIMER32_0_IRQHandler(void)
 			GPIOSetValue( HNDSHK_PORT, HNDSHK, 0 );
 		}
 
-		// --> Send out one data sample per every two interrupts
+		// --> Send out one data bit per every two interrupts
 		if(bits_sent < num_bits && !(i%2))
 		{
 			// still have data to send
-			bit_to_send = ((morse[samples_sent] >> bits_sent) & 0x1); // get the next bit to send
+			bit_to_send = ((data >> bits_sent) & 0x1); // get the next bit to send
 			GPIOSetValue( DOUT_PORT, DOUT, bit_to_send ); // set the data out value
 			bits_sent++;
 		}

@@ -26,7 +26,7 @@
 //%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
 //ADD INPUTS AND OUTPUTS
-module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK); 
+module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK, clk_out, LED_dataIN); 
 							
 	// NUMBER OF COEFFICIENTS (465)
 	// 	(Change this to a small value for initial testing and debugging, 
@@ -35,11 +35,13 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 
 	// define inputs and outputs
 	input clk, hndshk, reset, dataIn;
-	output reg dataOut;
+	output reg dataOut, clk_out;
 	output reg LED1;
-	output LED_CLK;
+	output LED_CLK, LED_dataIN;
+	//reg [4:0] bits_in_buffer;
 	
 	assign LED_CLK = clk;
+	assign LED_dataIN = dataIn;
 	
 	// store the input data by shifting into register
 	reg [16:0] dataInReg;
@@ -51,45 +53,33 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	reg signed 	[16:0] 	coefficient;	// Coefficient of FIR filter for index coeffIndex
 	reg signed 	[16:0] 	out;			// Register used for coefficient calculation
 	// Add more here...
-	reg signed [464:0] buffer[9:0]; // buffer to store all 465 current inputs
-	output reg [16:0] filtered_val; // result value after filtering and summing
+	//reg signed [464:0] buffer[9:0]; // buffer to store all 465 current inputs
+	//output reg [16:0] filtered_val; // result value after filtering and summing
 	
 	
 	initial
 	begin
-		dataRcvd <= 0;
+		dataRcvd <= 1'b0;
 		dataInReg <= 17'b0;
-		dataOut <= 17'b0;
+		dataOut <= 1'b0;
+		clk_out <= 1'b0;
+		//bits_in_buffer <= 5'b0;
 	end
 
 
 	// BLOCK 1: READ INPUT VALUE (16 bit stream)
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	//////////////////////////////////////////////////////////////////////////////////////////////////
-	/*always @(negedge reset)
-	begin
-		//toggle <= 0;
-		dataRcvd <= 0;
-		dataInReg <= 17'b0;
-		dataOut <= 17'b0;
-	end*/
-/*	
-	always @(posedge hndshk or negedge hndshk)
-	begin
-		if(hndshk == 1'b1)
-			toggle <= 1'b1;
-		else
-			toggle <= 1'b0;
-	end
-	*/
+	
 	always @(posedge clk or negedge reset)
 	begin
 		if(reset == 1'b0)
 		begin
 			dataRcvd <= 1'b0;
 			dataInReg <= 17'b0;
-			dataOut <= 17'b0;
+			dataOut <= 1'b0;
 			LED1 <= 1'b0;
+			//bits_in_buffer <= 5'b0;
 			
 			coefficient	<= 17'd0;
 			coeffIndex <= 12'b0;
@@ -103,16 +93,20 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 				// shift the current data left one bit, and add on the next serial data bit
 				dataInReg <= ((dataInReg << 1) + dataIn);
 				dataRcvd <= 1'b1;
+				//bits_in_buffer <= bits_in_buffer + 1'b1;
 				// turn on the LED based on dataIn
 				LED1 <= dataIn;
 			end
-			// if handshake is low and we have received data
+			// if handshake is low and we have data to send back
 			else if(hndshk == 1'b0 && dataRcvd == 1'b1)
 			begin
 				LED1 <= 1'b0;
 				// write the data back out to the LPC Xpresso
-				dataOut <= dataInReg[0];
-				dataInReg <= (dataInReg >> 1); // flush one bit from storage
+				dataOut = dataInReg[0];
+				dataInReg = (dataInReg >> 1); // flush one bit from storage
+				//bits_in_buffer = bits_in_buffer - 1'b1;
+				// toggle the output clock
+				clk_out = ~clk_out;
 			end
 		end
 	end
@@ -129,17 +123,17 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 	//////////////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Calculate the next coefficient here
-	
+	/*
 	always @ (negedge hndshk) // Define always statement as you wish...
   	begin  	
 		
 		// Reset values
-		/*
+		
 		if (reset)
 		begin
 			coefficient	= 17'd0;
 		end
-		*/
+		
 		// Calculate coefficient based on the coeffIndex value. Note that coeffIndex is a signed value!
 		// (Note: These don't necessarily have to be blocking statements.)
     	case ( coeffIndex )
@@ -619,5 +613,5 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED1, LED_CLK);
 		coefficient = out;
 
 	end
-
+	*/
 endmodule
