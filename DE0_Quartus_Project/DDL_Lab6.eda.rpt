@@ -1,5 +1,5 @@
 EDA Netlist Writer report for DDL_Lab6
-Wed Mar 05 01:07:09 2014
+Wed Mar 05 02:07:18 2014
 Quartus II 32-bit Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
 
 
@@ -36,7 +36,7 @@ applicable agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Wed Mar 05 01:07:09 2014 ;
+; EDA Netlist Writer Status ; Successful - Wed Mar 05 02:07:18 2014 ;
 ; Revision Name             ; DDL_Lab6                              ;
 ; Top-level Entity Name     ; lab6                                  ;
 ; Family                    ; Cyclone III                           ;
@@ -88,7 +88,7 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 32-bit EDA Netlist Writer
     Info: Version 12.0 Build 263 08/02/2012 Service Pack 2 SJ Web Edition
-    Info: Processing started: Wed Mar 05 01:07:07 2014
+    Info: Processing started: Wed Mar 05 02:07:16 2014
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off DDL_Lab6 -c DDL_Lab6
 Info (204019): Generated file DDL_Lab6_6_1200mv_85c_slow.vo in folder "C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file DDL_Lab6_6_1200mv_0c_slow.vo in folder "C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/simulation/modelsim/" for EDA simulation tool
@@ -100,7 +100,7 @@ Info (204019): Generated file DDL_Lab6_min_1200mv_0c_v_fast.sdo in folder "C:/Us
 Info (204019): Generated file DDL_Lab6_v.sdo in folder "C:/Users/Conrad/Documents/LPCXpresso_6.1.2_177/workspace/DDL_Lab6/DE0_Quartus_Project/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 32-bit EDA Netlist Writer was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 295 megabytes
-    Info: Processing ended: Wed Mar 05 01:07:09 2014
+    Info: Processing ended: Wed Mar 05 02:07:18 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

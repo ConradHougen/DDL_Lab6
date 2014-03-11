@@ -30,7 +30,7 @@ all: DDL_Lab6.axf
 DDL_Lab6.axf: $(OBJS) $(USER_OBJS)
 	@echo 'Building target: $@'
 	@echo 'Invoking: MCU Linker'
-	arm-none-eabi-gcc -nostdlib -L"C:\Users\Conrad\Documents\LPCXpresso_6.1.2_177\workspace\CMSIS_CORE_LPC11xx\Debug" -Xlinker -Map="DDL_Lab6.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "DDL_Lab6_Debug.ld" -o "DDL_Lab6.axf" $(OBJS) $(USER_OBJS) $(LIBS)
+	arm-none-eabi-gcc -nostdlib -L"C:\Users\Conrad\Documents\LPCXpresso_6.1.2_177\workspace\CMSIS_CORE_LPC11xx\Debug" -L"C:\Users\Conrad\Documents\LPCXpresso_6.1.2_177\workspace\lib_small_printf_m0\Lib" -Xlinker -Map="DDL_Lab6.map" -Xlinker --gc-sections -mcpu=cortex-m0 -mthumb -T "DDL_Lab6_Debug.ld" -o "DDL_Lab6.axf" $(OBJS) $(USER_OBJS) $(LIBS)
 	@echo 'Finished building target: $@'
 	@echo ' '
 	$(MAKE) --no-print-directory post-build

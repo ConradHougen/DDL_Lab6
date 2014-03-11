@@ -36,7 +36,7 @@
 
 #include "gpio.h"
 #include "timer32.h"
-
+#include "debug_printf.h"
 
 
 /* Main Program */
@@ -81,6 +81,7 @@ const uint32_t length = 1600;//morse code data length
 #define LED_PORT 0
 #define LED 7
 
+//static const int num_returned_bits = 17; // after filtering, should b
 static const int data = 0x33D;
 static const int num_bits = 10;
 static int done_sending = 0;
@@ -176,11 +177,11 @@ void PIOINT2_IRQHandler(void)
 	returned_num = (returned_num << 1) + data_bit_in;
 	bits_rcvd++;
 
-	// if we've received a 10-bit packet...
+	// if we've received a whole packet...
 	if(bits_rcvd == num_bits)
 	{
-		/*
-		if(samples_sent >= 1600)
+
+		if(samples_sent >= length)
 		{
 			// all data have been processed... finish
 			for(;;);
@@ -191,14 +192,19 @@ void PIOINT2_IRQHandler(void)
 		{
 			// Morse code dot --> turn off the LPC LED
 			GPIOSetValue( LED_PORT, LED, 0 );
+			debug_printf("dot: %d\n", returned_num);
 		}
 		else if(90 <= returned_num && returned_num <= 110 )
 		{
 			// Morse code dash --> turn on the LPC LED
 			GPIOSetValue( LED_PORT, LED, 1 );
+			debug_printf("dash: %d\n", returned_num);
 		}
-		*/
-		for(;;);
+		else
+		{
+			debug_printf("nothing: %d\n", returned_num);
+		}
+		//for(;;);
 
 		// start sending the next datum for filtering
 		bits_rcvd = 0;
@@ -249,7 +255,7 @@ void TIMER32_0_IRQHandler(void)
 		if(bits_sent < num_bits && !(i%2))
 		{
 			// still have data to send
-			bit_to_send = ((data >> bits_sent) & 0x1); // get the next bit to send
+			bit_to_send = ((morse[samples_sent] >> bits_sent) & 0x1); // get the next bit to send
 			GPIOSetValue( DOUT_PORT, DOUT, bit_to_send ); // set the data out value
 			bits_sent++;
 		}
