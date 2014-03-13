@@ -4,5 +4,5 @@
 
 USER_OBJS :=
 
-LIBS := -lCMSIS_CORE_LPC11xx -llib_small_printf_m0
+LIBS := -lCMSIS_CORE_LPC11xx
 

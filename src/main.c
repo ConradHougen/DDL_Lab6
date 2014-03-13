@@ -36,7 +36,7 @@
 
 #include "gpio.h"
 #include "timer32.h"
-#include "debug_printf.h"
+//#include "debug_printf.h"
 
 
 /* Main Program */
@@ -46,6 +46,8 @@ const int16_t morse[1600] = {109,145,145,109,50,-9,5,-45,-9,50,159,145,145,159,1
 };//ABC
 const uint32_t length = 1600;//morse code data length
 
+int16_t results[2000];
+int16_t index = 0;
 
 
 // 1ms timer interval
@@ -174,11 +176,11 @@ void PIOINT2_IRQHandler(void)
 	{
 		GPIOSetValue( LED_PORT, LED, 0 );
 	}
-	returned_num = (returned_num << 1) + data_bit_in;
+	returned_num = returned_num | (data_bit_in << bits_rcvd);
 	bits_rcvd++;
 
 	// if we've received a whole packet...
-	if(bits_rcvd == num_bits)
+	if(bits_rcvd == 32)
 	{
 
 		if(samples_sent >= length)
@@ -192,23 +194,34 @@ void PIOINT2_IRQHandler(void)
 		{
 			// Morse code dot --> turn off the LPC LED
 			GPIOSetValue( LED_PORT, LED, 0 );
-			debug_printf("dot: %d\n", returned_num);
+			//debug_printf("dot: %d\n", returned_num);
 		}
 		else if(90 <= returned_num && returned_num <= 110 )
 		{
 			// Morse code dash --> turn on the LPC LED
 			GPIOSetValue( LED_PORT, LED, 1 );
-			debug_printf("dash: %d\n", returned_num);
+			//debug_printf("dash: %d\n", returned_num);
 		}
 		else
 		{
-			debug_printf("nothing: %d\n", returned_num);
+			//debug_printf("nothing: %d\n", returned_num);
 		}
 		//for(;;);
 
+
+		// push returned num to an array for storage
+		if(index < 2000)
+		{
+			results[index++] = returned_num;
+		}
+		else
+		{
+
+			for(;;);
+		}
+
 		// start sending the next datum for filtering
 		bits_rcvd = 0;
-		bits_sent = 0;
 		done_sending = 0;
 	}
 
@@ -228,8 +241,8 @@ void PIOINT2_IRQHandler(void)
 void TIMER32_0_IRQHandler(void)
 {
 
-	// only do stuff every 500 ticks
-	if(!(timer32_0_counter % 500))
+	// only do stuff every 50 ticks
+	if(!(timer32_0_counter % 50))
 	{
 		// raise negative reset signal
 		if(!reset_sig)
@@ -252,10 +265,10 @@ void TIMER32_0_IRQHandler(void)
 		}
 
 		// --> Send out one data bit per every two interrupts
-		if(bits_sent < num_bits && !(i%2))
+		if(bits_sent < num_bits && !(i%2) && handshake)
 		{
 			// still have data to send
-			bit_to_send = ((morse[samples_sent] >> bits_sent) & 0x1); // get the next bit to send
+			bit_to_send = ((morse[samples_sent] >> (9-bits_sent)) & 0x1); // get the next bit to send
 			GPIOSetValue( DOUT_PORT, DOUT, bit_to_send ); // set the data out value
 			bits_sent++;
 		}
@@ -265,6 +278,7 @@ void TIMER32_0_IRQHandler(void)
 			done_sending = 1;
 			// sent another sample
 			samples_sent++;
+			bits_sent = 0;
 		}
 
 		// generate bit output clock (every interrupt, flip the clock signal)

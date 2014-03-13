@@ -38,7 +38,6 @@
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/${ProjName}/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CMSIS_CORE_LPC11xx/inc}&quot;"/>
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/DDL_Lab6/drivers}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_small_printf_m0/inc}&quot;"/>
 								</option>
 								<option id="com.crt.advproject.gcc.exe.debug.option.optimization.level.583437848" name="Optimization Level" superClass="com.crt.advproject.gcc.exe.debug.option.optimization.level"/>
 								<inputType id="com.crt.advproject.compiler.input.271031347" superClass="com.crt.advproject.compiler.input"/>
@@ -65,11 +64,9 @@
 								<option id="com.crt.advproject.link.gcc.hdrlib.1616159255" name="Use C library" superClass="com.crt.advproject.link.gcc.hdrlib" value="com.crt.advproject.gcc.link.hdrlib.codered.semihost" valueType="enumerated"/>
 								<option id="gnu.c.link.option.libs.490864494" name="Libraries (-l)" superClass="gnu.c.link.option.libs" valueType="libs">
 									<listOptionValue builtIn="false" value="CMSIS_CORE_LPC11xx"/>
-									<listOptionValue builtIn="false" srcPrefixMapping="" srcRootPath="" value="lib_small_printf_m0"/>
 								</option>
 								<option id="gnu.c.link.option.paths.709008018" name="Library search path (-L)" superClass="gnu.c.link.option.paths" valueType="libPaths">
 									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/CMSIS_CORE_LPC11xx/Debug}&quot;"/>
-									<listOptionValue builtIn="false" value="&quot;${workspace_loc:/lib_small_printf_m0/Lib}&quot;"/>
 								</option>
 								<option id="com.crt.advproject.link.crpenable.357282115" name="Enable Code Read Protect" superClass="com.crt.advproject.link.crpenable"/>
 								<option id="com.crt.advproject.link.gcc.multicore.slave.490490818" name="Multicore slave" superClass="com.crt.advproject.link.gcc.multicore.slave"/>

@@ -1,16 +1,16 @@
-Fitter Status : Failed - Tue Mar 11 14:45:28 2014
+Fitter Status : Successful - Thu Mar 13 03:36:50 2014
 Quartus II 32-bit Version : 12.0 Build 263 08/02/2012 SP 2 SJ Web Edition
 Revision Name : DDL_Lab6
 Top-level Entity Name : lab6
 Family : Cyclone III
 Device : EP3C16F484C6
 Timing Models : Final
-Total logic elements : 34,562 / 15,408 ( 224 % )
-    Total combinational functions : 29,912 / 15,408 ( 194 % )
-    Dedicated logic registers : 4,664 / 15,408 ( 30 % )
-Total registers : 4664
-Total pins : 10 / 347 ( 3 % )
+Total logic elements : 8,655 / 15,408 ( 56 % )
+    Total combinational functions : 8,623 / 15,408 ( 56 % )
+    Dedicated logic registers : 4,727 / 15,408 ( 31 % )
+Total registers : 4727
+Total pins : 11 / 347 ( 3 % )
 Total virtual pins : 0
 Total memory bits : 0 / 516,096 ( 0 % )
-Embedded Multiplier 9-bit elements : 0 / 112 ( 0 % )
+Embedded Multiplier 9-bit elements : 2 / 112 ( 2 % )
 Total PLLs : 0 / 4 ( 0 % )
