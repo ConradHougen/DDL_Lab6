@@ -223,6 +223,7 @@ void PIOINT2_IRQHandler(void)
 		// start sending the next datum for filtering
 		bits_rcvd = 0;
 		done_sending = 0;
+		returned_num = 0;
 	}
 
 	// clear the interrupt on pin 0
@@ -241,8 +242,8 @@ void PIOINT2_IRQHandler(void)
 void TIMER32_0_IRQHandler(void)
 {
 
-	// only do stuff every 50 ticks
-	if(!(timer32_0_counter % 50))
+	// only do stuff every 40 ticks
+	if(!(timer32_0_counter%3))
 	{
 		// raise negative reset signal
 		if(!reset_sig)

@@ -73,7 +73,7 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 		EN_coeff_calc <= 1'b0;
 		done <= 1'b0;
 		filtered_val <= 32'b0;
-		
+		temp_buff <= 10'b0;
 		coeffIndex <= 12'd464;
 		coefficient <= 17'b0;
 		out <= 17'b0;
@@ -104,6 +104,7 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 			filtered_val <= 32'b0;
 			//nc_sig <= 1'b0;
 			LED_test = 1'b0;
+			temp_buff <= 10'b0;
 			//need_coeff <= 1'b1;
 		end
 		else
@@ -111,8 +112,13 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 			// handshake is high, so read data
 			if(hndshk == 1'b1)
 			begin
+				//if(bits_in_buffer == 5'b1010)
+				//begin
+					// shouldn't be here!
+					//LED_test = 1'b1;
+				//end
 				// shift the current data left one bit, and add on the next serial data bit
-				temp_buff = ((temp_buff << 1) + dataIn);
+				temp_buff = ((temp_buff << 1) | dataIn);
 				bits_in_buffer = bits_in_buffer + 1'b1;
 				if(bits_in_buffer == 5'b1010)
 				begin
@@ -120,7 +126,11 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 					begin
 						buffer[i] <= buffer[i-1];
 					end
-					buffer[0] <= temp_buff;
+					buffer[0] = temp_buff;
+					if(buffer[0] == 10'b0)
+					begin
+						LED_test = 1'b1;
+					end
 				end
 			end
 			// if handshake is low and we have a new sample, calculate the output
@@ -601,6 +611,8 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 			
     endcase
 					
+					
+					
 					filtered_val = filtered_val + (buffer[buff_index] * out);
 					
 					if(coeffIndex == 0)
@@ -609,7 +621,6 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 						coeffIndex = 12'd464;
 						done = 1'b1;
 						filtered_val = filtered_val >>> 15; // >>> for sign extend
-						LED_test = 1'b1;
 					end
 					else
 					begin
@@ -620,20 +631,18 @@ module lab6 (clk, hndshk, reset, dataIn, dataOut, LED_CLK, clk_out, LED_dataIN, 
 			else if(hndshk == 1'b0 && done == 1'b1)
 			begin
 				// write the data back out to the LPC Xpresso
+			
+				//dataOut = 1'b1;
+				dataOut = filtered_val[0];
+				clk_out = ~clk_out;
+				filtered_val = filtered_val >>> 1;
+				bits_returned = bits_returned + 1'b1;
 				if(bits_returned == 6'd32)
 				begin
 					done = 1'b0;
 					//filtered_val = 32'b0;
 					bits_in_buffer = 5'b0;
 					bits_returned = 6'd0;
-					LED_test = 1'b0;
-				end
-				else
-				begin
-					dataOut = filtered_val[0];
-					clk_out = ~clk_out;
-					filtered_val = filtered_val >>> 1;
-					bits_returned = bits_returned + 1'b1;
 				end
 			end
 		end
